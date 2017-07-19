@@ -86,9 +86,16 @@ function moveSnake()
 	}
 	else
 		setFood();
-		
-	colorTbl(active[0],active[1])
-	snake.push([active[0],active[1]])
+	if(~JSON.stringify(snake).indexOf(JSON.stringify(active)))
+	{
+		clearInterval(si);
+		alert("Aaaach");
+	}
+	else
+	{
+		colorTbl(active[0],active[1])
+		snake.push([active[0],active[1]])
+	}
 }
 
 snake.forEach((v,i)=>colorTbl(v[0],v[1]))
@@ -106,4 +113,4 @@ function uncolor(...tbl)
 	table.children[0].children[tbl[0]].children[tbl[1]].removeAttribute("class")
 }
 
-var si = setInterval(moveSnake,1000);
+var si = setInterval(moveSnake,500);
